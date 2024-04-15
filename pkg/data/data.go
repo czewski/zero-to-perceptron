@@ -1,7 +1,7 @@
 package data
 
-func GenerateData() [][]float32 {
-	designMatrix := [][]float32{
+func GenerateData() [][]float64 {
+	designMatrix := [][]float64{
 		{1, 1},
 		{1, 0},
 		{0, 1},
@@ -11,8 +11,8 @@ func GenerateData() [][]float32 {
 	return designMatrix
 }
 
-func GenerateLabels() []float32 {
-	labels := []float32{
+func GenerateLabels() []float64 {
+	labels := []float64{
 		0, 1, 1, 0,
 	}
 

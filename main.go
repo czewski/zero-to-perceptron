@@ -1,8 +1,9 @@
 package main
 
 import (
-	"perceptron/pkg/biases"
 	"perceptron/pkg/data"
+	"perceptron/pkg/maths"
+	"perceptron/pkg/network"
 )
 
 func main() {
@@ -11,17 +12,19 @@ func main() {
 	//Generate data
 	inputMatrix := data.GenerateData()
 	groundTruthLabels := data.GenerateLabels()
+	maths.PrintMatrix(inputMatrix)
+
 	_, _ = inputMatrix, groundTruthLabels
 
-	//Generate NN -- This needs to make more sense still
-	input := biases.Layer{}
-	hidden := biases.Layer{}
-	output := biases.Layer{}
+	//Generate NN -- This still needs to make more sense
+	input := network.Layer{}
+	hidden := network.Layer{}
+	output := network.Layer{}
 
-	NN := biases.Network{
-		Inputs: []biases.Layer{input, input},
-		Hidden: []biases.Layer{hidden, hidden, hidden},
-		Output: []biases.Layer{output},
+	NN := network.Network{
+		Inputs: []network.Layer{input, input},
+		Hidden: []network.Layer{hidden, hidden, hidden},
+		Output: []network.Layer{output},
 	}
 
 	//Parameters Input > Hidden (2x3) = 6
@@ -38,7 +41,16 @@ func main() {
 
 	//Initialize parameters with gaussian distribution
 
-	//Linear transformation from input to hidden
+	//Z MATRIX: Multiply Input x InputHidden ---- row = each of the 4 training examples | column = z node
+	zMatrix := maths.MultiplyMatrices(inputMatrix, parametersInputHidden)
+	maths.PrintMatrix(zMatrix)
+
+	//Activation function (at hidden layer) ---- apply sigmoid to each element in z matrix
+	maths.PrintMatrix(network.SigmoidMatrix(zMatrix))
+
+	//Get Z Matrix for Hidden Output
+
+	//Activation for Hidden Output
 
 	//Train
 

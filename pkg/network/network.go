@@ -1,4 +1,4 @@
-package biases
+package network
 
 // ixj i = inputs, j = hidden
 type Network struct {
@@ -10,25 +10,25 @@ type Network struct {
 // Neuron ou layer que tem a activation? neuron i guess
 type Layer struct {
 	Neurons []Neuron
-	Bias    float32
+	Bias    float64
 }
 
 type Neuron struct {
-	Input           []float32
-	PreviousOutputs []float32
-	Output          float32
+	Input           []float64
+	PreviousOutputs []float64
+	Output          float64
 	//Bias            Bias
 	// Activation
 }
 
 // type Bias struct {
-// 	Value float32
+// 	Value float64
 // }
 
 type Activation struct {
 }
 
-func (a Activation) Sigmoid([][]float32) (as []float32) {
+func (a Activation) Sigmoid([][]float64) (as []float64) {
 
 	return as
 }
@@ -46,5 +46,5 @@ func (nn Network) LenOutput() int {
 //Network : Input, Hidden, Output
 // 2,3,1
 // 6, 3
-//Create [6][3]float32
+//Create [6][3]float64
 //
