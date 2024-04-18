@@ -46,11 +46,13 @@ func main() {
 	maths.PrintMatrix(zMatrix)
 
 	//Activation function (at hidden layer) ---- apply sigmoid to each element in z matrix
-	maths.PrintMatrix(network.SigmoidMatrix(zMatrix))
+	hMatrix := network.SigmoidMatrix(zMatrix)
+	maths.PrintMatrix(hMatrix)
 
 	//Get Z Matrix for Hidden Output
 
 	//Activation for Hidden Output
+	//predictionsMatrix :=
 
 	//Train
 
