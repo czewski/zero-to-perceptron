@@ -11,9 +11,9 @@ func GenerateData() [][]float64 {
 	return designMatrix
 }
 
-func GenerateLabels() []float64 {
-	labels := []float64{
-		0, 1, 1, 0,
+func GenerateLabels() [][]float64 {
+	labels := [][]float64{
+		{0}, {1}, {1}, {0},
 	}
 
 	return labels

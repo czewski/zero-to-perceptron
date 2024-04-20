@@ -28,31 +28,38 @@ func main() {
 	}
 
 	//Parameters Input > Hidden (2x3) = 6
-	parametersInputHidden := make([][]float64, NN.LenInput())
+	weightMatrixOne := make([][]float64, NN.LenInput())
 	for i := 0; i < NN.LenInput(); i++ {
-		parametersInputHidden[i] = make([]float64, NN.LenHidden())
+		weightMatrixOne[i] = make([]float64, NN.LenHidden())
 	}
 
-	//Parameters Hidden > Output (3x1) = 3
-	parametersHiddenOutput := make([][]float64, NN.LenHidden())
-	for i := 0; i < NN.LenInput(); i++ {
-		parametersHiddenOutput[i] = make([]float64, NN.LenOutput())
+	//Parameters Hidden > Output (3x1) = 3 // 3x1 or 1x3 to make it work?
+	weightMatrixTwo := make([][]float64, NN.LenHidden())
+	for i := 0; i < NN.LenHidden(); i++ {
+		weightMatrixTwo[i] = make([]float64, NN.LenOutput())
 	}
 
-	//Initialize parameters with gaussian distribution
+	//Initialize parameters with gaussian distribution //or random
 
-	//Z MATRIX: Multiply Input x InputHidden ---- row = each of the 4 training examples | column = z node
-	zMatrix := maths.MultiplyMatrices(inputMatrix, parametersInputHidden)
-	maths.PrintMatrix(zMatrix)
+	//Propagation
+	//Z1 MATRIX: Multiply Input x InputHidden ---- row = each of the 4 training examples | column = z node
+	zMatrixOne := maths.MultiplyMatrices(inputMatrix, weightMatrixOne)
+	maths.PrintMatrix(zMatrixOne)
 
 	//Activation function (at hidden layer) ---- apply sigmoid to each element in z matrix
-	hMatrix := network.SigmoidMatrix(zMatrix)
-	maths.PrintMatrix(hMatrix)
+	hMatrixOne := network.SigmoidMatrix(zMatrixOne)
+	maths.PrintMatrix(hMatrixOne)
 
-	//Get Z Matrix for Hidden Output
+	//Get Z2 Matrix for Hidden Output
 
-	//Activation for Hidden Output
-	//predictionsMatrix :=
+	zMatrixTwo := maths.MultiplyMatrices(hMatrixOne, weightMatrixTwo)
+	maths.PrintMatrix(zMatrixTwo)
+
+	//Activation for Hidden Output == Prediction
+	prediction := network.SigmoidMatrix(zMatrixTwo)
+	maths.PrintMatrix(prediction)
+
+	//Backpropagation
 
 	//Train
 
