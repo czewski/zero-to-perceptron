@@ -1,5 +1,20 @@
 package network
 
+// Generate NN -- This still needs to make more sense (probably won't use a lot of this elements)
+func GenerateNetwork() (NN Network) {
+	input := Layer{}
+	hidden := Layer{}
+	output := Layer{}
+
+	NN = Network{
+		Inputs: []Layer{input, input},
+		Hidden: []Layer{hidden, hidden, hidden},
+		Output: []Layer{output},
+	}
+
+	return NN
+}
+
 // ixj i = inputs, j = hidden
 type Network struct {
 	Inputs []Layer
@@ -19,18 +34,6 @@ type Neuron struct {
 	Output          float64
 	//Bias            Bias
 	// Activation
-}
-
-// type Bias struct {
-// 	Value float64
-// }
-
-type Activation struct {
-}
-
-func (a Activation) Sigmoid([][]float64) (as []float64) {
-
-	return as
 }
 
 func (nn Network) LenInput() int {
