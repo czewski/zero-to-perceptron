@@ -2,7 +2,7 @@ package maths
 
 import "fmt"
 
-func MultiplyMatrices(A, B [][]float64) [][]float64 {
+func DotMatrices(A, B [][]float64) [][]float64 {
 	rowsA, colsA := len(A), len(A[0])
 	rowsB, colsB := len(B), len(B[0])
 
@@ -53,21 +53,15 @@ func SubtractElementsMatrices(A, B [][]float64) [][]float64 {
 func MultiplyElementWiseMatrices(A, B [][]float64) [][]float64 {
 	rowsA, colsB := len(A), len(B[0])
 
-	//TODO: check for same dimension
-
-	// Initialize result matrix C
-	C := make([][]float64, rowsA)
-	for i := range C {
-		C[i] = make([]float64, colsB)
-	}
-
-	for i := 0; i < rowsA; i++ {
-		for j := 0; j < colsB; j++ {
-			C[i][j] = A[i][j] * B[i][j]
+	result := make([][]float64, rowsA)
+	for i := range result {
+		result[i] = make([]float64, colsB)
+		for j := range result[i] {
+			result[i][j] = A[i][0] * B[0][j]
 		}
 	}
 
-	return C
+	return result
 }
 
 func MultiplyValueToMatrices(A float64, B [][]float64) [][]float64 {
