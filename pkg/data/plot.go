@@ -15,7 +15,7 @@ func CreatePlot(costs []float64, epochs int) {
 	p := plot.New()
 
 	// Set plot title and labels
-	p.Title.Text = "Data per Epoch"
+	p.Title.Text = "Cost Function"
 	p.X.Label.Text = "Epoch"
 	p.Y.Label.Text = "Cost"
 

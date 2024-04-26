@@ -17,9 +17,11 @@ func GenerateNetwork() (NN Network) {
 
 // ixj i = inputs, j = hidden
 type Network struct {
-	Inputs []Layer
-	Hidden []Layer
-	Output []Layer
+	Inputs          []Layer
+	Hidden          []Layer
+	Output          []Layer
+	WeightMatrixOne [][]float64
+	WeightMatrixTwo [][]float64
 }
 
 // Neuron ou layer que tem a activation? neuron i guess

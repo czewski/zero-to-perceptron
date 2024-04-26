@@ -1,8 +1,11 @@
 package network
 
-import "math/rand"
+import (
+	"math"
+	"math/rand"
+)
 
-func InitializeParameters(NN Network) ([][]float64, [][]float64) {
+func InitializeParameters(NN Network) Network { //([][]float64, [][]float64)
 	//Parameters Input > Hidden (2x3) = 6
 	weightMatrixOne := make([][]float64, NN.LenInput())
 	for i := 0; i < NN.LenInput(); i++ {
@@ -15,17 +18,18 @@ func InitializeParameters(NN Network) ([][]float64, [][]float64) {
 		weightMatrixTwo[i] = make([]float64, NN.LenOutput())
 	}
 
-	//Initialize random values
-	weightMatrixOne = initializeRandomValues(weightMatrixOne)
-	weightMatrixTwo = initializeRandomValues(weightMatrixTwo)
+	NN.WeightMatrixOne = initializeRandomValues(weightMatrixOne)
+	NN.WeightMatrixTwo = initializeRandomValues(weightMatrixTwo)
 
-	return weightMatrixOne, weightMatrixTwo
+	return NN
 }
 
 func initializeRandomValues(slice [][]float64) [][]float64 {
 	for i := range slice {
 		for j := range slice[i] {
-			slice[i][j] = rand.NormFloat64()
+			slice[i][j] = rand.NormFloat64() * math.Sqrt(2.0/float64(len(slice[i])))
+
+			//slice[i][j] = rand.NormFloat64() * math.Sqrt(1.0/float64(len(slice[i])))
 		}
 	}
 	return slice
